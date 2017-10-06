@@ -8,7 +8,7 @@ import re
 # 4. Split string into individual words in a list (make them lowercase in list)
 # 5. Go through each word letter-by-letter, filtering out punctuation
 # 6. Add characters to a dictionary with their respective counts within the word
-#     - If the document is blank, break out of loop and return nothing
+#     - If the document is blank, break out of loop and return
 # 7. Take the character counts for each word and find the most-repeated character in each
 # 8. Take the max repeat numbers for each word and find the highest number out of those (i.e., the word that contains the most repeats of a particular letter)
 # 9. Return the corresponding word
@@ -28,8 +28,9 @@ def repeats(sentence):
     if len(sentence) == 0:
         return
 
+    # If there are any newline characters,
     if '\n' in sentence:
-        sentence = ' '.join([line.strip() for line in sentence.strip().splitlines()])
+        sentence = ' '.join([line.rstrip() for line in sentence.rstrip().splitlines()])
 
     currMax = 0 # the highest count of character repeats out of all the words
     ans = ""
@@ -44,6 +45,10 @@ def repeats(sentence):
 
         # Make list of letter counts for current word
         countsPerWord = charCounts.values()
+
+        # if no characters are letters, return
+        if len(countsPerWord) == 0:
+            return
 
         # Find highest value in list (most repeated character)
         wordMax = max(countsPerWord)
