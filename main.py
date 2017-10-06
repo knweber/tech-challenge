@@ -23,14 +23,24 @@ def cli():
     repeats(text)
     specificFile.close()
 
+# Remove any newline characters
+def removeNewLines(sentence):
+    sentence = ' '.join([line.rstrip() for line in sentence.rstrip().splitlines()])
+    return(sentence)
+
+def removePunctuation(letterList,char,countTable):
+    if re.match("\w",char):
+        countTable[char] = int(letterList.count(char))
+        return countTable[char]
+
 
 def repeats(sentence):
     if len(sentence) == 0:
         return
 
-    # If there are any newline characters,
-    if '\n' in sentence:
-        sentence = ' '.join([line.rstrip() for line in sentence.rstrip().splitlines()])
+    # If there are any newline characters
+    if "\n" in sentence:
+        sentence = removeNewLines(sentence)
 
     currMax = 0 # the highest count of character repeats out of all the words
     ans = ""
@@ -40,8 +50,7 @@ def repeats(sentence):
         charCounts = dict() # create dictionary to hold character counts for current word
         letters = list(word.lower()) # add lowercase letters of word into list
         for l in letters:
-            if re.match("\w",l):
-                charCounts[l] = int(letters.count(l))
+            removePunctuation(letters,l,charCounts)
 
         # Make list of letter counts for current word
         countsPerWord = charCounts.values()
