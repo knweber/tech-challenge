@@ -1,4 +1,5 @@
 import sys
+import re
 
 # PSEUDOCODE:
 # 1. Open file
@@ -24,7 +25,15 @@ def cli():
 
 
 def repeats(sentence):
-    print(sentence)
+    currMax = 0
+    ans = ""
+    words = sentence.split(" ")
+
+    for word in words:
+        charCounts = dict() # create dictionary to hold character counts for current word
+        letters = list(word.lowercase()) # add lowercase letters of word into list
+        for l in letters:
+
 
 if __name__ == '__main__':
     cli()
