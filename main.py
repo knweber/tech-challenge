@@ -28,17 +28,22 @@ def removeNewLines(sentence):
     sentence = " ".join([line.rstrip() for line in sentence.rstrip().splitlines()])
     return(sentence)
 
-# Remove any punctuation
-def removePunctuation(letterList,char,countTable):
-    if re.match("\w",char):
+# Remove numbers
+def isNum(word):
+    if re.match("\d",char):
+        char = ""
+        return(char)
+
+# Remove any punctuation or numbers
+def removeNonLetters(letterList,char,countTable):
+    if char.isalpha():
         countTable[char] = int(letterList.count(char))
-        return countTable[char]
+        return(countTable[char])
 
 # Check to see if the highest number of repeats in current word is higher than the current highest number
 def isMaxValue(existingMax,newVal):
     if newVal > existingMax:
         return(True)
-
 
 def repeats(sentence):
     if len(sentence) == 0: # If file is blank, return
@@ -55,12 +60,12 @@ def repeats(sentence):
         charCounts = dict() # Create dictionary to hold character counts for current word
         letters = list(word.lower()) # Add lowercase letters of word into list
         for l in letters:
-            removePunctuation(letters,l,charCounts) # Remove punctuation marks, if any
+            removeNonLetters(letters,l,charCounts) # Only keep letters
 
         countsPerWord = charCounts.values() # Make list of letter counts for current word
 
-        if len(countsPerWord) == 0: # If no characters are letters, return
-            return
+        if len(countsPerWord) == 0: # If no characters are letters
+            continue
 
         wordMax = max(countsPerWord) # Find highest value in list (most repeated character)
 

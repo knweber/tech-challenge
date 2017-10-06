@@ -9,9 +9,9 @@ A Python app that returns a word with the most repeated characters from a given 
 ``python main.py <FILE_NAME_HERE>``
 
 ## Notes:
-- Blank files: I decided to return nothing if a file is blank.
+- Blank files: If a blank file is passed in, the code will immediately return.
 - Punctuation:
-  - If a file consists only of punctuation marks, they are eventually filtered out through the ``removePunctuation()`` function, leaving a blank file. As a result, nothing is returned.
+  - If a file consists only of punctuation marks, they are eventually filtered out through the ``removePunctuation()`` function. Since the answer is initialized as an empty string if the original file contains any content at all, an empty string is returned.
   - According to the instructions, when the correct word is returned, all original punctuation should be included. I made the choice to include trailing punctuation marks following the word as well (e.g., "Romeo, Romeo!" would return "Romeo," and "Cat's apples!" would return "apples!").
 
 - Test files:
@@ -22,8 +22,8 @@ A Python app that returns a word with the most repeated characters from a given 
   - test5: returns "blue-collar" (the first instance of a tie between words with different punctuation)
   - test6: nothing (file is blank)
   - test7: returns "ApPle" (the first instance of a tie between words with different cases)
-  - test8: nothing (file only consists of punctuation marks)
-  - test9: returns "apples!" (trailing punctuation marks are included as original punctuation)
+  - test8: returns "" (file only consists of punctuation marks)
+  - test9: returns "apples!" (a tie, comes before 'ap888ples' where the numbers have been filtered out, trailing punctuation marks included in original punctuation)
 
 ## Original challenge:
 In some English words, there is a letter that appears more than once. Search through a
