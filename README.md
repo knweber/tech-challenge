@@ -23,6 +23,7 @@ A Python app that returns a word with the most repeated characters from a given 
   - test6: nothing (file is blank)
   - test7: returns "ApPle" (the first instance of a tie between words with different cases)
   - test8: nothing (file only consists of punctuation marks)
+  - test9: returns "apples!" (trailing punctuation marks are included as original punctuation)
 
 ## Original challenge:
 In some English words, there is a letter that appears more than once. Search through a
