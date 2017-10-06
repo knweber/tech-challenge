@@ -15,7 +15,7 @@ import sys
 #     - If there is a tie, the first word should be returned
 #         - Since this will happen in a for loop, the number of repeats for a word will be evaluated chronologically and the first one should be returned
 
-def main():
+def cli():
     filename = sys.argv[1]
     specificFile = open(filename,"r")
     text = specificFile.read()
@@ -27,4 +27,4 @@ def repeats(sentence):
     print(sentence)
 
 if __name__ == '__main__':
-    main()
+    cli()
