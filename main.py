@@ -23,37 +23,48 @@ def cli():
     repeats(text)
     specificFile.close()
 
+# Remove any newline characters
+def removeNewLines(sentence):
+    sentence = " ".join([line.rstrip() for line in sentence.rstrip().splitlines()])
+    return(sentence)
+
+# Remove any punctuation
+def removePunctuation(letterList,char,countTable):
+    if re.match("\w",char):
+        countTable[char] = int(letterList.count(char))
+        return countTable[char]
+
+# Check to see if the highest number of repeats in current word is higher than the current highest number
+def isMaxValue(existingMax,newVal):
+    if newVal > existingMax:
+        return(True)
+
 
 def repeats(sentence):
-    if len(sentence) == 0:
+    if len(sentence) == 0: # If file is blank, return
         return
 
-    # If there are any newline characters,
-    if '\n' in sentence:
-        sentence = ' '.join([line.rstrip() for line in sentence.rstrip().splitlines()])
+    if "\n" in sentence: # If there are any newline characters
+        sentence = removeNewLines(sentence)
 
-    currMax = 0 # the highest count of character repeats out of all the words
+    currMax = 0 # The highest count of character repeats out of all the words
     ans = ""
     words = sentence.split(" ")
 
     for word in words:
-        charCounts = dict() # create dictionary to hold character counts for current word
-        letters = list(word.lower()) # add lowercase letters of word into list
+        charCounts = dict() # Create dictionary to hold character counts for current word
+        letters = list(word.lower()) # Add lowercase letters of word into list
         for l in letters:
-            if re.match("\w",l):
-                charCounts[l] = int(letters.count(l))
+            removePunctuation(letters,l,charCounts) # Remove punctuation marks, if any
 
-        # Make list of letter counts for current word
-        countsPerWord = charCounts.values()
+        countsPerWord = charCounts.values() # Make list of letter counts for current word
 
-        # if no characters are letters, return
-        if len(countsPerWord) == 0:
+        if len(countsPerWord) == 0: # If no characters are letters, return
             return
 
-        # Find highest value in list (most repeated character)
-        wordMax = max(countsPerWord)
+        wordMax = max(countsPerWord) # Find highest value in list (most repeated character)
 
-        if wordMax > currMax:
+        if isMaxValue(currMax,wordMax):
             currMax = wordMax
             ans = word
 
