@@ -18,7 +18,7 @@ import re
 
 def cli():
     filename = sys.argv[1]
-    specificFile = open(filename,"r")
+    specificFile = open(filename,"U")
     text = specificFile.read()
     repeats(text)
     specificFile.close()
@@ -27,7 +27,10 @@ def cli():
 def repeats(sentence):
     if len(sentence) == 0:
         return
-    
+
+    if '\n' in sentence:
+        sentence = ' '.join([line.strip() for line in sentence.strip().splitlines()])
+
     currMax = 0 # the highest count of character repeats out of all the words
     ans = ""
     words = sentence.split(" ")
