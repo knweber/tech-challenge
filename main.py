@@ -34,49 +34,39 @@ def removePunctuation(letterList,char,countTable):
         countTable[char] = int(letterList.count(char))
         return countTable[char]
 
+# Check to see if the highest number of repeats in current word is higher than the current highest number
 def isMaxValue(existingMax,newVal):
     if newVal > existingMax:
         return(True)
 
-def repeats(sentence):
 
-    # If file is blank, return
-    if len(sentence) == 0:
+def repeats(sentence):
+    if len(sentence) == 0: # If file is blank, return
         return
 
-    # If there are any newline characters
-    if "\n" in sentence:
+    if "\n" in sentence: # If there are any newline characters
         sentence = removeNewLines(sentence)
 
-    currMax = 0 # the highest count of character repeats out of all the words
+    currMax = 0 # The highest count of character repeats out of all the words
     ans = ""
     words = sentence.split(" ")
 
     for word in words:
-        charCounts = dict() # create dictionary to hold character counts for current word
-        letters = list(word.lower()) # add lowercase letters of word into list
+        charCounts = dict() # Create dictionary to hold character counts for current word
+        letters = list(word.lower()) # Add lowercase letters of word into list
         for l in letters:
-            # Remove punctuation marks, if any
-            removePunctuation(letters,l,charCounts)
+            removePunctuation(letters,l,charCounts) # Remove punctuation marks, if any
 
-        # Make list of letter counts for current word
-        countsPerWord = charCounts.values()
+        countsPerWord = charCounts.values() # Make list of letter counts for current word
 
-        # If no characters are letters, return
-        if len(countsPerWord) == 0:
+        if len(countsPerWord) == 0: # If no characters are letters, return
             return
 
-        # Find highest value in list (most repeated character)
-        wordMax = max(countsPerWord)
-
-        # if wordMax > currMax:
-        #     currMax = wordMax
-        #     ans = word
+        wordMax = max(countsPerWord) # Find highest value in list (most repeated character)
 
         if isMaxValue(currMax,wordMax):
             currMax = wordMax
             ans = word
-
 
     print ans
 
