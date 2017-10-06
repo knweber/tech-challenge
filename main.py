@@ -35,7 +35,18 @@ def repeats(sentence):
         for l in letters:
             if re.match("\w",l):
                 charCounts[l] = int(letters.count(l))
-                print(charCounts)
+
+        # Make list of letter counts for current word
+        countsPerWord = charCounts.values()
+
+        # Find highest value in list (most repeated character)
+        wordMax = max(countsPerWord)
+
+        if wordMax > currMax:
+            currMax = wordMax
+            ans = word
+
+    print ans
 
 
 if __name__ == '__main__':
