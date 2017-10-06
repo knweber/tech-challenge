@@ -25,6 +25,9 @@ def cli():
 
 
 def repeats(sentence):
+    if len(sentence) == 0:
+        return
+    
     currMax = 0 # the highest count of character repeats out of all the words
     ans = ""
     words = sentence.split(" ")
