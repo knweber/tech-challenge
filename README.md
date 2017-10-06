@@ -45,7 +45,7 @@ character for input, and merely ignore any character that is not a letter. Lastl
 program should not return exceptions or warnings.
 
 
-Example:
+**Example:**
 
 Input: “O Romeo, Romeo, wherefore art thou Romeo?”
 
@@ -55,7 +55,7 @@ Explanation: The letter “e” is repeated three times in the word “wherefore
 more than any other letter is repeated in any other word!
 
 
-Example:
+**Example:**
 
 Input: “Some people feel the rain, while others just get wet.”
 
