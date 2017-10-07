@@ -57,7 +57,7 @@ def most_repeats(sentence):
         for l in letters:
             remove_non_letters(letters,l,char_counts) # Only keep the letters
 
-        counts_per_word = char_counts.values() # Make list of letter counts for current word
+        counts_per_word = char_counts.values() # Make list of just the letter counts for current word
 
         if len(counts_per_word) == 0: # If no characters are letters (e.g. all punctuation), move onto next word
             continue
