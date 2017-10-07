@@ -28,12 +28,6 @@ def removeNewLines(sentence):
     sentence = " ".join([line.rstrip() for line in sentence.rstrip().splitlines()])
     return(sentence)
 
-# Remove numbers
-def isNum(word):
-    if re.match("\d",char):
-        char = ""
-        return(char)
-
 # Remove any punctuation or numbers
 def removeNonLetters(letterList,char,countTable):
     if char.isalpha():
