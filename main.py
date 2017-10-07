@@ -20,8 +20,8 @@ def cli():
     filename = sys.argv[1]
     specificFile = open(filename,"U")
     text = specificFile.read()
-    repeats(text)
     specificFile.close()
+    repeats(text)
 
 # Remove any newline characters
 def removeNewLines(sentence):
