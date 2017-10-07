@@ -18,60 +18,55 @@ import re
 
 def cli():
     filename = sys.argv[1]
-    specificFile = open(filename,"U")
-    text = specificFile.read()
-    repeats(text)
-    specificFile.close()
+    specific_file = open(filename,"U")
+    file_text = specific_file.read()
+    specific_file.close()
+    most_repeats(file_text)
 
 # Remove any newline characters
-def removeNewLines(sentence):
+def remove_new_lines(sentence):
     sentence = " ".join([line.rstrip() for line in sentence.rstrip().splitlines()])
     return(sentence)
 
-# Remove numbers
-def isNum(word):
-    if re.match("\d",char):
-        char = ""
-        return(char)
-
 # Remove any punctuation or numbers
-def removeNonLetters(letterList,char,countTable):
+def remove_non_letters(letter_list,char,count_table):
     if char.isalpha():
-        countTable[char] = int(letterList.count(char))
-        return(countTable[char])
+        count_table[char] = int(letter_list.count(char))
+        return(count_table[char])
 
 # Check to see if the highest number of repeats in current word is higher than the current highest number
-def isMaxValue(existingMax,newVal):
-    if newVal > existingMax:
+def is_max_value(existing_max,new_val):
+    if new_val > existing_max:
         return(True)
 
-def repeats(sentence):
+# Find word with the highest number of repeats of a single letter
+def most_repeats(sentence):
     if len(sentence) == 0: # If file is blank, return
         return
 
-    if "\n" in sentence: # If there are any newline characters
-        sentence = removeNewLines(sentence)
+    if "\n" in sentence: # If there are any newline characters, remove them
+        sentence = remove_new_lines(sentence)
 
-    currMax = 0 # The highest count of character repeats out of all the words
+    curr_max = 0 # The highest count of character repeats out of all the words
     ans = ""
     words = sentence.split(" ")
 
     for word in words:
-        charCounts = dict() # Create dictionary to hold character counts for current word
-        letters = list(word.lower()) # Add lowercase letters of word into list
+        char_counts = dict() # Create dictionary to hold character counts for current word
+        letters = list(word.lower()) # Letters in word are made lowercase and added to a list
         for l in letters:
-            removeNonLetters(letters,l,charCounts) # Only keep letters
+            remove_non_letters(letters,l,char_counts) # Only keep the letters
 
-        countsPerWord = charCounts.values() # Make list of letter counts for current word
+        counts_per_word = char_counts.values() # Make list of just the letter counts for current word
 
-        if len(countsPerWord) == 0: # If no characters are letters
+        if len(counts_per_word) == 0: # If no characters are letters (e.g. all punctuation), move onto next word
             continue
 
-        wordMax = max(countsPerWord) # Find highest value in list (most repeated character)
+        word_max = max(counts_per_word) # Find highest value in list (most repeated character)
 
-        if isMaxValue(currMax,wordMax):
-            currMax = wordMax
-            ans = word
+        if is_max_value(curr_max,word_max):
+            curr_max = word_max # If the current word has a character with more repeats than the previous leading word, reassign the number of repeats to correspond to the number of repeats in the current word
+            ans = word # Answer is set as the current word
 
     print ans
 
