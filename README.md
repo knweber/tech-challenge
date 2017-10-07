@@ -11,7 +11,7 @@ A Python app that returns a word with the most repeated characters from a given 
 ## Notes:
 - Blank files: If a blank file is passed in, the code will immediately return.
 - Punctuation:
-  - If a file consists only of punctuation marks, they are eventually filtered out through the ``remove-non-letters()`` function. Since the answer is initialized as an empty string if the original file contains any content at all, an empty string is returned.
+  - If a file consists only of punctuation marks, they are eventually filtered out through the ``remove_non_letters()`` function. Since the answer is initialized as an empty string if the original file contains any content at all, an empty string is returned.
   - According to the instructions, when the correct word is returned, all original punctuation should be included. I made the choice to include trailing punctuation marks following the word as well (e.g., "Romeo, Romeo!" would return "Romeo," and "Cat's apples!" would return "apples!").
 
 - Test files:
